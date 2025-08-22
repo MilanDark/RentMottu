@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using API_RentMoto.Models;
-using API_RentMoto.Repositories.Interfaces;
 
 namespace API_RentMoto.Repositories
 {
@@ -13,9 +12,6 @@ namespace API_RentMoto.Repositories
         {
             _context = context;
         }
-
-
-
 
         public IEnumerable<Entregador> GetAll() => _context.Entregador.ToList();
 

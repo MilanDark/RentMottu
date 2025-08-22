@@ -134,24 +134,3 @@ namespace API_RentMoto.Controllers
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-//namespace API_RentMoto.Controllers
-//{
-//    [RoutePrefix("api/motos")]
-//    public class motosController : ApiController
-//    {
-//        private readonly API_RentMoto.Services.IMotoService _service;
-
-
-//    }
-//}

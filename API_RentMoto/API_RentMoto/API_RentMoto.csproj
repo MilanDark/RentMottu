@@ -199,32 +199,37 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\EntregadoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocacaoController.cs" />
     <Compile Include="Controllers\MotosController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202508221347341_CodeFirst_Recriar_DB.cs" />
-    <Compile Include="Migrations\202508221347341_CodeFirst_Recriar_DB.designer.cs">
-      <DependentUpon>202508221347341_CodeFirst_Recriar_DB.cs</DependentUpon>
+    <Compile Include="Migrations\202508221929565_Criacao_Banco_Completo.cs" />
+    <Compile Include="Migrations\202508221929565_Criacao_Banco_Completo.designer.cs">
+      <DependentUpon>202508221929565_Criacao_Banco_Completo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202508221723589_CriarTabelaEntregadores.cs" />
-    <Compile Include="Migrations\202508221723589_CriarTabelaEntregadores.designer.cs">
-      <DependentUpon>202508221723589_CriarTabelaEntregadores.cs</DependentUpon>
+    <Compile Include="Migrations\202508222016526_Criacao_Banco_Completo1.cs" />
+    <Compile Include="Migrations\202508222016526_Criacao_Banco_Completo1.designer.cs">
+      <DependentUpon>202508222016526_Criacao_Banco_Completo1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\Entregadores.cs" />
+    <Compile Include="Models\Locacoes.cs" />
     <Compile Include="Models\Motos.cs" />
     <Compile Include="Models\Teste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntregadorRepository.cs" />
     <Compile Include="Repositories\Interfaces\IEntregadorRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ILocacaoRepository.cs" />
     <Compile Include="Repositories\Interfaces\IMotoRepository.cs" />
+    <Compile Include="Repositories\LocacaoRepository.cs" />
     <Compile Include="Repositories\MotoRepository.cs" />
     <Compile Include="Services\EntregadorService.cs" />
+    <Compile Include="Services\Interfaces\ILocacaoService.cs" />
     <Compile Include="Services\Interfaces\IEntregadorService.cs" />
     <Compile Include="Services\Interfaces\IMotoService.cs" />
+    <Compile Include="Services\LocacaoService.cs" />
     <Compile Include="Services\MotoService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +286,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Entregadores\" />
+    <Folder Include="Views\Locacao\" />
     <Folder Include="Views\Motos\" />
   </ItemGroup>
   <ItemGroup>
@@ -316,11 +322,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202508221347341_CodeFirst_Recriar_DB.resx">
-      <DependentUpon>202508221347341_CodeFirst_Recriar_DB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202508221929565_Criacao_Banco_Completo.resx">
+      <DependentUpon>202508221929565_Criacao_Banco_Completo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202508221723589_CriarTabelaEntregadores.resx">
-      <DependentUpon>202508221723589_CriarTabelaEntregadores.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202508222016526_Criacao_Banco_Completo1.resx">
+      <DependentUpon>202508222016526_Criacao_Banco_Completo1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
