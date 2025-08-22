@@ -18,6 +18,9 @@ namespace API_RentMoto.Repositories
 
         public Moto GetById(int id) => _context.Moto.Find(id);
 
+        public Moto GetMotoByPlaca(string placa) => _context.Moto.Where(x=> x.placa== placa).FirstOrDefault();
+
+
         public Moto Add(Moto moto)
         {
             _context.Moto.Add(moto);

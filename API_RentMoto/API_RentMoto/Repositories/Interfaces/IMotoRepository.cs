@@ -9,6 +9,7 @@ namespace API_RentMoto.Repositories.Interfaces
     {
         IEnumerable<Moto> GetAll();
         Moto GetById(int id);
+        Moto GetMotoByPlaca(string placa);
         Moto Add(Moto moto);
         void Update(Moto moto);
         void Delete(int id);

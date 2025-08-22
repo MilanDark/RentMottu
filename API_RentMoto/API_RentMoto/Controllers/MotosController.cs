@@ -1,6 +1,7 @@
 ﻿using API_RentMoto.Models;
 using API_RentMoto.Repositories;
 using API_RentMoto.Services;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net;
@@ -24,36 +25,17 @@ namespace API_RentMoto.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        [Route("")]
-        public IHttpActionResult GetAll()
-        {
-            try
-            {
-                var motos = _service.GetAll();
-                if (motos == null || !motos.Any())
-                    return NotFound();
-
-                return Ok(motos);
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
-
-
         [HttpPost]
         [Route("")] //ok
         public IHttpActionResult Create(Moto moto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
 
             try
             {
                 var ret = _service.CreateMoto(moto);
-                return Created($"api/motos/{ret.Id}", ret); ;
+                return Ok();
             }
             catch (Exception ex)
             {
@@ -61,15 +43,15 @@ namespace API_RentMoto.Controllers
             }
         }
 
-
-
         [HttpGet]
-        [Route("{id:int}")]
-        public IHttpActionResult GetMotoById(int id)
+        [Route("")]//ok
+        public IHttpActionResult GetMotoByPlaca(string placa = null)
         {
             try
             {
-                var moto = _service.GetMotoById(id);
+                if (string.IsNullOrEmpty(placa )) return NotFound();
+
+                var moto = _service.GetMotoByPlaca(placa);
                 if (moto == null)
                     return NotFound();
 
@@ -82,20 +64,21 @@ namespace API_RentMoto.Controllers
         }
 
         [HttpPut]
-        [Route("{id:int}")]
-        public IHttpActionResult UpdateMoto(int id, [FromBody] Moto moto)
+        [Route("{id:int}/{placa}")]//ok
+        public IHttpActionResult UpdatePlacaMoto(int id, string placa)
         {
-            if (moto == null || id != moto.Id)
-                return BadRequest("Invalid data.");
 
             try
             {
+                if(id<=0)
+                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
+
                 var existingMoto = _service.GetMotoById(id);
                 if (existingMoto == null)
-                    return NotFound();
+                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
 
-                _service.UpdateMoto(moto);
-                return StatusCode(HttpStatusCode.NoContent); // 204 No Content
+                _service.UpdatePlacaMoto(existingMoto, placa);
+                return Content(HttpStatusCode.OK, new { mensagem = "Placa modificada com sucesso" });
             }
             catch (Exception ex)
             {
@@ -103,19 +86,64 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("{id:int}")]//ok
+        public IHttpActionResult GetMotoById(int id)
+        {
+            try
+            {
+                if(id <=0)
+                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Request mal formada" });
+
+                var moto = _service.GetMotoById(id);
+                if (moto == null)
+                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
+
+                return Ok(moto);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPut]
+        [Route("")]//ok
+        public IHttpActionResult UpdateMoto([FromBody] Moto moto)
+        {
+            if (!ModelState.IsValid)
+                return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
+
+            try
+            {
+                var existingMoto = _service.GetMotoById(moto.id);
+                if (existingMoto == null)
+                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
+
+                _service.UpdateMoto(existingMoto, moto);
+                return Ok(moto);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
         [HttpDelete]
-        [Route("{id:int}")]
+        [Route("{id:int}")] //ok
         public IHttpActionResult DeleteMoto(int id)
         {
             try
             {
+                if(id<=0)
+                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
+
                 var moto = _service.GetMotoById(id);
                 if (moto == null)
-                    return NotFound();
+                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
 
                 _service.DeleteMoto(id);
-                return StatusCode(HttpStatusCode.NoContent); // 204 No Content
+                return Ok();// n StatusCode(HttpStatusCode.NoContent); // 204 No Content
             }
             catch (Exception ex)
             {
