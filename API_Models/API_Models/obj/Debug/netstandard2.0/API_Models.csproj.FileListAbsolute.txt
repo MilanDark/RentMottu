@@ -1,0 +1,9 @@
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\bin\Debug\netstandard2.0\API_Models.deps.json
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\bin\Debug\netstandard2.0\API_Models.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\bin\Debug\netstandard2.0\API_Models.pdb
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\obj\Debug\netstandard2.0\API_Models.csprojAssemblyReference.cache
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\obj\Debug\netstandard2.0\API_Models.csproj.CoreCompileInputs.cache
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\obj\Debug\netstandard2.0\API_Models.AssemblyInfoInputs.cache
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\obj\Debug\netstandard2.0\API_Models.AssemblyInfo.cs
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\obj\Debug\netstandard2.0\API_Models.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_Models\API_Models\obj\Debug\netstandard2.0\API_Models.pdb

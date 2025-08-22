@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Entity;
+
+namespace API_RentMoto.Models
+{
+
+    public class AppDbContext : DbContext
+    {
+        // DbSet para a sua entidade, representando uma tabela no banco de dados
+        public DbSet<Teste> Teste { get; set; }
+        public DbSet<Moto> Moto { get; set; }
+
+        // Opcional: Construtor para definir o nome da conexão
+        public AppDbContext() : base("Conexao1") // ou o nome da sua string de conexão
+        {
+            //Database.SetInitializer( CreateDatabaseIfNotExists<AppDbContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<AppDbContext>());
+            //Database.SetInitializer<AppDbContext>(null);
+        }
+
+        // Opcional: Configure o modelo (ex: inserir dados de exemplo)
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.HasDefaultSchema("public"); // Define "public" como schema padrão
+            //modelBuilder.Entity<Teste>().ToTable("Teste");
+        }
+    }
+}
