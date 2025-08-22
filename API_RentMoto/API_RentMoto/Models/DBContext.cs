@@ -13,7 +13,9 @@ namespace API_RentMoto.Models
         // DbSet para a sua entidade, representando uma tabela no banco de dados
         public DbSet<Teste> Teste { get; set; }
         public DbSet<Moto> Moto { get; set; }
+        public DbSet<Entregador> Entregador { get; set; }
 
+        
         // Opcional: Construtor para definir o nome da conexão
         public AppDbContext() : base("Conexao1") // ou o nome da sua string de conexão
         {

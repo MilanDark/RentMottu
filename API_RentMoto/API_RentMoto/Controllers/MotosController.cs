@@ -13,7 +13,7 @@ namespace API_RentMoto.Controllers
     [RoutePrefix("api/motos")]
     public class motosController : ApiController
     {
-        private readonly API_RentMoto.Services.IMotoService _service;
+        private readonly IMotoService _service;
 
         public motosController()
         {

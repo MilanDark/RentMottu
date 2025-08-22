@@ -1,26 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
+using System.Linq;
+using System.Web;
 using API_RentMoto.Models;
 using API_RentMoto.Repositories.Interfaces;
-using Newtonsoft.Json;
+using API_RentMoto.Services;
 
 namespace API_RentMoto.Services
 {
-    public interface IMotoService
-    {
-        Moto CreateMoto(Moto moto);
-        Moto CreateMotoExternal(Moto moto); // chama API externa
-        IEnumerable<Moto> GetAll();
-        Moto GetMotoById(int id);
-        Moto GetMotoByPlaca(string placa);
-        void UpdateMoto(Moto moto, Moto new_moto);
-        void UpdatePlacaMoto(Moto moto, string placa);
-        void DeleteMoto(int id);
-    }
-
     public class MotoService : IMotoService
     {
         private readonly IMotoRepository _repository;
@@ -31,8 +18,7 @@ namespace API_RentMoto.Services
         }
 
 
-
-        #region Funcoes
+        #region Functions
         protected void Convert_to_Update_moto(Moto moto, ref Moto new_moto)
         {
             new_moto.id = moto.id;
@@ -43,7 +29,6 @@ namespace API_RentMoto.Services
         }
 
         #endregion
-
 
         #region Methods
 

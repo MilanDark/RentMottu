@@ -1,1 +1,2 @@
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.csprojAssemblyReference.cache
