@@ -15,32 +15,39 @@ namespace API_RentMoto.Controllers
     public class HomeController : ApiController
     {
 
-        void Envia_Pacote_Fila_Teste()
+        void Envia_Pacote_Fila_Teste(string texto)
         {
 
-
+            var rQueue = new API_RentMoto.Services.RabbitMQ();
+            var nomeFila = "Motos_Adicionadas";
+            rQueue.TopicName = "ANTT";
+            rQueue.CreateConnection();
+            rQueue.CreateInfrastructure(nomeFila);
+            try
+            {
+                while (true)
+                {
+                        var pacote = JsonConvert.SerializeObject(texto, Newtonsoft.Json.Formatting.None);
+                        rQueue.Publish(pacote, nomeFila);
+                        rQueue.closeConnection();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 
         
         [HttpPost]
-        public IHttpActionResult TesteAdd(string Test_Text = "")
+        public IHttpActionResult TesteAdd(string texto = "")
         {
             try
             {
-
-                Envia_Pacote_Fila_Teste();
-
-
-
-
-                using (var context = new AppDbContext())
-                {
-                    context.Teste.Add(new Teste { Retorno = Test_Text });
-                    context.SaveChanges();
-                }
-
-                return Ok("Registro Inserido");
+                Envia_Pacote_Fila_Teste(texto);
+                return Ok("Enviado para a fila...");
             }
             catch(Exception e)
             {
@@ -49,27 +56,85 @@ namespace API_RentMoto.Controllers
         
         }
 
-
         [HttpGet]
-        public string TesteList()
+        public IHttpActionResult TesteRead()
         {
-            using (var context = new AppDbContext())
+            try
             {
-                return JsonConvert.SerializeObject(context.Teste.ToList());
+
+                //var rQueue = new API_RentMoto.Services.RabbitMQ();
+                //var nomeFila = "Queue";
+                //rQueue.TopicName = "ANTT";
+                //rQueue.CreateConnection();
+                //rQueue.CreateInfrastructure(nomeFila);
+                //string receivedMessage = "";
+
+                //while (true)
+                //{
+                //    try
+                //    {
+                //        receivedMessage = rQueue.Receive(nomeFila);
+                //        if (receivedMessage != null)
+                //        {
+                //            var Pacote = new ViagemModel();
+                //            var log = JsonConvert.DeserializeObject<ViagemModel_Rabbit_v3>(receivedMessage);
+                //            Pacote.PartitionKey = log.PartitionKey;
+                //            int result = DateTime.Compare(log.dataHoraEvento, DateTime.Now);
+                //            break;
+                //        }
+                //        else
+                //        {
+                //            rQueue.closeConnection();
+                //            break;
+                //        }
+                //    }
+                //    catch (MessagingException e)
+                //    { }
+                //}
+
+
+                return Ok();
             }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //[HttpGet]
-        //public string TesteList2()
+        //public string TesteList()
         //{
         //    using (var context = new AppDbContext())
         //    {
-        //        var products = context.Teste.Where(p => p.ID == 1).ToList();
+        //        return JsonConvert.SerializeObject(context.Teste.ToList());
         //    }
-
-        //    return "OK!";
         //}
+
+
+ 
     }
 
 

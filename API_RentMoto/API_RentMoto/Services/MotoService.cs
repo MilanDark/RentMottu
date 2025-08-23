@@ -5,6 +5,7 @@ using System.Web;
 using API_RentMoto.Models;
 using API_RentMoto.Repositories.Interfaces;
 using API_RentMoto.Services;
+using Newtonsoft.Json;
 
 namespace API_RentMoto.Services
 {
@@ -12,6 +13,8 @@ namespace API_RentMoto.Services
     {
         private readonly IMotoRepository _repository;
         private readonly ILocacaoRepository _locacaoRepository;
+
+        const string QueueName = "Motos_Adicionadas";
 
         public MotoService(IMotoRepository motoRepository, ILocacaoRepository LocacaoRepository)
         {
@@ -54,6 +57,12 @@ namespace API_RentMoto.Services
         bool Verify_Rent_By_Moto(string identificadorMoto)
         {
             return _locacaoRepository.Verify_Rent_By_Moto(identificadorMoto);
+        }
+
+        void Envia_Pacote_Fila_Teste(Moto moto)
+        {
+            var Queue = new RabbitMQ();
+            Queue.Envia_Pacote_Fila_Teste(JsonConvert.SerializeObject(moto), QueueName);
         }
         #endregion
 
@@ -113,9 +122,6 @@ namespace API_RentMoto.Services
             _repository.Update(moto);
         }
 
-
-
-
         public void DeleteMoto(int id)
         {
             if (id <= 0)
@@ -131,15 +137,14 @@ namespace API_RentMoto.Services
             _repository.Delete(id);
         }
 
-
-
         public Moto CreateMoto(Moto moto)
         {
             if (Verify_Motorcycles_By_Placa(moto.placa))
                 throw new InvalidOperationException("Já existe uma moto cadastrada com esta placa");
 
             Ajust_Fields_To_DB(ref moto);
-            moto.placa = moto.placa.Trim().ToUpper();
+
+            Envia_Pacote_Fila_Teste(moto);
             return _repository.Add(moto);
         }
         #endregion
