@@ -70,7 +70,14 @@ namespace API_RentMoto.Services
 
         public Moto GetMotoById(int id)
         {
-            return _repository.GetById(id);
+            if (id <= 0)
+                throw new ArgumentException("Dados inválidos");
+
+            var moto = _repository.GetById(id);
+            if (moto == null)
+                throw new ArgumentException("Moto não encontrada"); 
+
+            return moto;
         }
 
         public IEnumerable<Moto> GetAll()

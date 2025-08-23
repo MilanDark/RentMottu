@@ -8,7 +8,7 @@ namespace API_RentMoto.Services
         Locacao Add(Locacao entregador);
         IEnumerable<Locacao> GetAll();
         Locacao GetById(int id);
-        void Update(Locacao locacao, Locacao new_locacao);
+        void Update(int id, Locacao new_locacao);
         void Delete(int id);
         double CalculateValue(Locacao locacao);
     }

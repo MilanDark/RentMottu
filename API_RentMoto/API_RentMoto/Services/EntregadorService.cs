@@ -55,19 +55,20 @@ namespace API_RentMoto.Services
 
         public Entregador GetById(int id)
         {
-            return _repository.GetById(id);
+            if (id <= 0)
+                throw new InvalidOperationException("Request mal formada");
+
+            var moto = GetById(id);
+            if (moto == null)
+                throw new InvalidOperationException("Moto não encontrada");
+
+            return moto;
         }
 
         public Entregador GetByIdentificador(string identificador)
         {
             return _repository.GetByIdentificador(identificador);
         }
-
-        //public void Update(Entregador entregador, string imagem_cnh)
-        //{
-        //    Add_Photo_Entregador(imagem_cnh, ref entregador);
-        //    _repository.Update(entregador);
-        //}
 
         public void Update(int entregadorId, HttpPostedFile file)
         {
@@ -98,6 +99,13 @@ namespace API_RentMoto.Services
 
         public void Delete(int id)
         {
+            if (id <= 0)
+                throw new InvalidOperationException("Dados inválidos");
+
+            var moto = GetById(id);
+            if (moto == null)
+                throw new InvalidOperationException("Moto não encontrada");
+
             _repository.Delete(id);
         }
 

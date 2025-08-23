@@ -44,7 +44,7 @@ namespace API_RentMoto.Controllers
 
             try
             {
-                var ret = _service.Add(locacao);
+                _service.Add(locacao);
                 return Ok();
             }
             catch (InvalidOperationException ex)
@@ -63,16 +63,12 @@ namespace API_RentMoto.Controllers
         {
             try
             {
-                if (id <= 0 || locacao.data_devolucao == null)
-                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
-
-
-                var ret = _service.GetById(id);
-                if (ret == null)
-                    return Content(HttpStatusCode.NotFound, new { mensagem = "Locação não encontrada" });
-
-                _service.Update(ret, locacao);
+                _service.Update(id, locacao);
                 return Content(HttpStatusCode.OK, new { mensagem = "Data de devolução informada com sucesso" });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Content(HttpStatusCode.NotFound, new { mensagem = ex.Message });
             }
             catch (Exception ex)
             {
@@ -87,14 +83,7 @@ namespace API_RentMoto.Controllers
         {
             try
             {
-                if (id <= 0)
-                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
-
-                var ret = _service.GetById(id);
-                if (ret == null)
-                    return Content(HttpStatusCode.NotFound, new { mensagem = "Locação não encontrada" });
-
-                return Ok(ret);
+                return Ok(_service.GetById(id));
             }
             catch (Exception ex)
             {

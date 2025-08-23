@@ -14,6 +14,7 @@ namespace API_RentMoto.Controllers
     [RoutePrefix("api/entregadores")]
     public class entregadoresController : ApiController
     {
+        #region Constructor
         private readonly IEntregadorService _service;
 
         public entregadoresController()
@@ -25,9 +26,12 @@ namespace API_RentMoto.Controllers
         {
             _service = service;
         }
+        #endregion
 
+
+        #region Methods
         [HttpPost]
-        [Route("")] //ok
+        [Route("")]
         public IHttpActionResult Add(Entregador entregador)
         {
             if (!ModelState.IsValid)
@@ -56,14 +60,11 @@ namespace API_RentMoto.Controllers
         {
             try
             {
-                if (id <= 0)
-                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Request mal formada" });
-
-                var moto = _service.GetById(id);
-                if (moto == null)
-                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
-
-                return Ok(moto);
+                return Ok(GetById(id));
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Content(HttpStatusCode.BadRequest, new { mensagem = ex.Message });
             }
             catch (Exception ex)
             {
@@ -71,27 +72,6 @@ namespace API_RentMoto.Controllers
             }
         }
 
-        //[HttpPut]
-        //[Route("")]
-        //public IHttpActionResult Update([FromBody] Entregador entregador)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
-
-        //    try
-        //    {
-        //        var existingMoto = _service.GetById(entregador.id);
-        //        if (existingMoto == null)
-        //            return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
-
-        //        _service.Update(entregador);
-        //        return Ok(entregador);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
 
         [HttpDelete]
         [Route("{id:int}")]
@@ -99,15 +79,12 @@ namespace API_RentMoto.Controllers
         {
             try
             {
-                if (id <= 0)
-                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
-
-                var moto = _service.GetById(id);
-                if (moto == null)
-                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
-
                 _service.Delete(id);
-                return Ok();// n StatusCode(HttpStatusCode.NoContent); // 204 No Content
+                return Ok();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Content(HttpStatusCode.BadRequest, new { mensagem = ex.Message });
             }
             catch (Exception ex)
             {
@@ -138,6 +115,7 @@ namespace API_RentMoto.Controllers
             }
 
         }
+        #endregion
     }
 }
 

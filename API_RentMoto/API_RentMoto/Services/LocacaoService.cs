@@ -96,13 +96,27 @@ namespace API_RentMoto.Services
 
         public Locacao GetById(int id)
         {
-            return _repository.GetById(id);
+            if (id <= 0)
+                throw new InvalidOperationException("Dados inválidos");
+
+            var ret = GetById(id);
+            if (ret == null)
+                throw new InvalidOperationException("Locação não encontrada");
+
+            return ret;
         }
 
-        public void Update(Locacao locacao, Locacao new_locacao)
+        public void Update(int id, Locacao new_locacao)
         {
-            Update_DataDevolucao_Locacao(new_locacao.data_devolucao, ref locacao);
-            _repository.Update(locacao);
+            if (id <= 0 || new_locacao.data_devolucao == null)
+                throw new InvalidOperationException("Dados inválidos");
+
+            var ret = GetById(id);
+            if (ret == null)
+                throw new InvalidOperationException("Locação não encontrada");
+
+            Update_DataDevolucao_Locacao(new_locacao.data_devolucao, ref ret);
+            _repository.Update(ret);
         }
 
         public void Delete(int id)

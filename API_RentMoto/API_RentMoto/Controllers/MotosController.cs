@@ -1,9 +1,7 @@
 ﻿using API_RentMoto.Models;
 using API_RentMoto.Repositories;
 using API_RentMoto.Services;
-using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Net;
 using System.Web.Http;
 
@@ -13,6 +11,7 @@ namespace API_RentMoto.Controllers
     [RoutePrefix("api/motos")]
     public class motosController : ApiController
     {
+        #region Constructor
         private readonly IMotoService _service;
 
         public motosController()
@@ -29,9 +28,12 @@ namespace API_RentMoto.Controllers
         {
             _service = service;
         }
+        #endregion
 
+
+        #region Methods
         [HttpPost]
-        [Route("")] //ok
+        [Route("")]
         public IHttpActionResult Create(Moto moto)
         {
             if (!ModelState.IsValid)
@@ -39,7 +41,7 @@ namespace API_RentMoto.Controllers
 
             try
             {
-                var ret = _service.CreateMoto(moto);
+                _service.CreateMoto(moto);
                 return Ok();
             }
             catch (InvalidOperationException ex)
@@ -53,7 +55,7 @@ namespace API_RentMoto.Controllers
         }
 
         [HttpGet]
-        [Route("")]//ok
+        [Route("{id:int}/placa")]
         public IHttpActionResult GetMotoByPlaca(string placa = null)
         {
             try
@@ -70,8 +72,26 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("")]
+        public IHttpActionResult GetAllMoto()
+        {
+            try
+            {
+                return Ok(_service.GetAll());
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Content(HttpStatusCode.NotFound, new { mensagem = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         [HttpPut]
-        [Route("{id:int}")]//ok
+        [Route("{id:int}")]
         public IHttpActionResult UpdatePlacaMoto(int id, [FromBody] Moto moto)
         {
             try
@@ -90,41 +110,16 @@ namespace API_RentMoto.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]//ok
+        [Route("{id:int}")]
         public IHttpActionResult GetMotoById(int id)
         {
             try
             {
-                if(id <=0)
-                    return Content(HttpStatusCode.BadRequest, new { mensagem = "Request mal formada" });
-
-                var moto = _service.GetMotoById(id);
-                if (moto == null)
-                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
-
-                return Ok(moto);
+                return Ok(_service.GetMotoById(id));
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
-                return InternalServerError(ex);
-            }
-        }
-
-        [HttpPut]
-        [Route("")]//ok
-        public IHttpActionResult UpdateMoto([FromBody] Moto moto)
-        {
-            if (!ModelState.IsValid)
-                return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
-
-            try
-            {
-                var existingMoto = _service.GetMotoById(moto.id);
-                if (existingMoto == null)
-                    return Content(HttpStatusCode.NotFound, new { mensagem = "Moto não encontrada" });
-
-                _service.UpdateMoto(existingMoto, moto);
-                return Ok(moto);
+                return Content(HttpStatusCode.NotFound, new { mensagem = ex.Message });
             }
             catch (Exception ex)
             {
@@ -133,7 +128,7 @@ namespace API_RentMoto.Controllers
         }
 
         [HttpDelete]
-        [Route("{id:int}")] //ok
+        [Route("{id:int}")] 
         public IHttpActionResult DeleteMoto(int id)
         {
             try
@@ -150,5 +145,6 @@ namespace API_RentMoto.Controllers
                 return InternalServerError(ex);
             }
         }
+        #endregion
     }
 }
