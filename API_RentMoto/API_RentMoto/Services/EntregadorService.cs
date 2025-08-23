@@ -1,5 +1,6 @@
 ﻿using API_RentMoto.Models;
 using API_RentMoto.Repositories;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,6 +13,7 @@ namespace API_RentMoto.Services
     public class EntregadorService : IEntregadorService
     {
         private readonly IEntregadorRepository _repository;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public EntregadorService(IEntregadorRepository EntregadorRepository)
         {
@@ -50,11 +52,15 @@ namespace API_RentMoto.Services
 
         public IEnumerable<Entregador> GetAll()
         {
+            Logger.Info($"GetAllEntregador->Iniciando.");
+
             return _repository.GetAll();
         }
 
         public Entregador GetById(int id)
         {
+            Logger.Info($"GetByIdEntregador->{id}");
+
             if (id <= 0)
                 throw new InvalidOperationException("Request mal formada");
 
@@ -62,16 +68,22 @@ namespace API_RentMoto.Services
             if (moto == null)
                 throw new InvalidOperationException("Moto não encontrada");
 
+
+            Logger.Info($"GetByIdEntregador->Finalizando.");
             return moto;
         }
 
         public Entregador GetByIdentificador(string identificador)
         {
+            Logger.Info($"GetByIdentificadorEntregador->{identificador}");
+
             return _repository.GetByIdentificador(identificador);
         }
 
         public void Update(int entregadorId, HttpPostedFile file)
         {
+            Logger.Info($"UpdateEntregador->{entregadorId}");
+
             var entregador = GetById(entregadorId);
             if (entregador == null)
                 throw new InvalidOperationException("Dados inválidos");
@@ -94,11 +106,16 @@ namespace API_RentMoto.Services
             entregador.imagem_cnh = filePath;
 
             _repository.Update(entregador);
+
+            Logger.Info($"UpdateEntregador->Finalizando.");
         }
 
 
         public void Delete(int id)
         {
+
+            Logger.Info($"DeleteEntregador->{id}");
+
             if (id <= 0)
                 throw new InvalidOperationException("Dados inválidos");
 
@@ -107,10 +124,14 @@ namespace API_RentMoto.Services
                 throw new InvalidOperationException("Moto não encontrada");
 
             _repository.Delete(id);
+
+            Logger.Info($"DeleteEntregador->Finalizando.");
         }
 
         public Entregador Add(Entregador entregador)
         {
+            Logger.Info($"AddEntregador->{entregador.identificador}");
+
             if (Verify_CNPJ(entregador.cnpj))
                 throw new InvalidOperationException("CNPJ já cadastrado");
 

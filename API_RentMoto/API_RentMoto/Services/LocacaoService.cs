@@ -1,6 +1,7 @@
 ﻿using API_RentMoto.Models;
 using API_RentMoto.Repositories;
 using API_RentMoto.Repositories.Interfaces;
+using NLog;
 using System;
 using System.Collections.Generic;
 
@@ -9,10 +10,11 @@ namespace API_RentMoto.Services
     public class LocacaoService : ILocacaoService
 
     {
+
         private readonly ILocacaoRepository _repository;
         private readonly IMotoService _motoService;
         private readonly IEntregadorService _entregadorService;
-
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
 
         public LocacaoService(ILocacaoRepository LocacaoRepository, IMotoService motoService, IEntregadorService entregadorService)
@@ -91,11 +93,15 @@ namespace API_RentMoto.Services
 
         public IEnumerable<Locacao> GetAll()
         {
+            Logger.Info($"GetAllLocacao->Iniciando...");
+
             return _repository.GetAll();
         }
 
         public Locacao GetById(int id)
         {
+            Logger.Info($"GetByIdLocacao->{id}");
+
             if (id <= 0)
                 throw new InvalidOperationException("Dados inválidos");
 
@@ -103,11 +109,15 @@ namespace API_RentMoto.Services
             if (ret == null)
                 throw new InvalidOperationException("Locação não encontrada");
 
+
+            Logger.Info($"GetByIdLocacao->Finalizando.");
             return ret;
         }
 
         public void Update(int id, Locacao new_locacao)
         {
+            Logger.Info($"UpdateLocacao->{id}");
+
             if (id <= 0 || new_locacao.data_devolucao == null)
                 throw new InvalidOperationException("Dados inválidos");
 
@@ -117,11 +127,17 @@ namespace API_RentMoto.Services
 
             Update_DataDevolucao_Locacao(new_locacao.data_devolucao, ref ret);
             _repository.Update(ret);
+
+            Logger.Info($"UpdateLocacao->Finalizando.");
         }
 
         public void Delete(int id)
         {
+            Logger.Info($"Delete->{id}");
+
             _repository.Delete(id);
+
+            Logger.Info($"Delete->Finalizando.");
         }
 
         public double CalculateValue(Locacao locacao)
@@ -131,11 +147,11 @@ namespace API_RentMoto.Services
 
         public Locacao Add(Locacao locacao)
         {
+            Logger.Info($"AddLocacao->{locacao.moto_id}");
 
             var msgError = Verify_Locacao_Rules(ref locacao);
             if (!string.IsNullOrEmpty(msgError))
                 throw new InvalidOperationException(msgError);
-
 
             return _repository.Add(locacao);
         }

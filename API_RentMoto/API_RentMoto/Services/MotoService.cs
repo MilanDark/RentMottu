@@ -72,23 +72,31 @@ namespace API_RentMoto.Services
 
         public Moto GetMotoById(int id)
         {
+            Logger.Info($"GetMOtoById->{id}");
+
             if (id <= 0)
                 throw new ArgumentException("Dados inválidos");
 
             var moto = _repository.GetById(id);
             if (moto == null)
-                throw new ArgumentException("Moto não encontrada"); 
+                throw new ArgumentException("Moto não encontrada");
+
+
+            Logger.Info($"UpdateMoto->Finalizando");
 
             return moto;
         }
 
         public IEnumerable<Moto> GetAll()
         {
+            Logger.Info($"GetAll->Iniciando");
+
             return _repository.GetAll();
         }
 
         public Moto GetMotoByPlaca(string placa)
         {
+            Logger.Info($"GetMotoByPlaca->{placa}");
 
             if (string.IsNullOrEmpty(placa))
                 throw new InvalidOperationException("Parâmetro Placa não enviado");
@@ -98,16 +106,21 @@ namespace API_RentMoto.Services
             if (ret == null)
                 throw new InvalidOperationException("Não existem motos cadastradas com esta placa");
 
+            Logger.Info($"GetMotoByPlaca->Finalizando.");
             return ret;
         }
 
         public Moto GetMotoByIdentificador(string identificador)
         {
+            Logger.Info($"GetMotoByIdentificador->{identificador}");
+
             return _repository.GetByIdentificador(identificador);
         }
 
         public void UpdatePlacaMoto(int id, string placa)
         {
+            Logger.Info($"UpdatePlacaMOto->{id}---{placa}");
+
             if (id <= 0)
                 throw new ArgumentException("Dados inválidos");
 
@@ -120,16 +133,24 @@ namespace API_RentMoto.Services
 
             moto.placa = placa;
             _repository.Update(moto);
+
+            Logger.Info($"UpdateMoto->Finalizando.");
         }
 
         public void UpdateMoto(Moto moto, Moto new_moto)
         {
+            Logger.Info($"UpdateMoto->{moto.id}");
+
             Convert_to_Update_moto(new_moto, ref moto);
             _repository.Update(moto);
+
+            Logger.Info($"UpdateMoto->Finalizando");
         }
 
         public void DeleteMoto(int id)
         {
+            Logger.Info($"DeleteMoto->{id}");
+
             if (id <= 0)
                 throw new ArgumentException("Dados inválidos");
 
@@ -140,21 +161,26 @@ namespace API_RentMoto.Services
             if(Verify_Rent_By_Moto(moto.identificador))
                 throw new InvalidOperationException("A moto não pode ser removida por estar com locação ativa");
 
+
             _repository.Delete(id);
+
+            Logger.Info($"DeleteMoto->Finalizado.");
         }
 
         public Moto CreateMoto(Moto moto)
         {
-            Logger.Info($"Criando moto {moto.identificador}");
-            // lógica de criação
-            Logger.Info($"Moto {moto.identificador} criada com sucesso");
+            Logger.Info($"CreateMoto->{moto.identificador}");
 
             if (Verify_Motorcycles_By_Placa(moto.placa))
+            {
                 throw new InvalidOperationException("Já existe uma moto cadastrada com esta placa");
+            }
 
             Ajust_Fields_To_DB(ref moto);
 
             Queue_Moto_Add(moto);
+
+            Logger.Info($"CreateMoto->Gravando e finalizando método.");
             return _repository.Add(moto);
         }
         #endregion

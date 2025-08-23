@@ -1,6 +1,7 @@
 ﻿
 using API_RentMoto.Models;
 using Newtonsoft.Json;
+using NLog;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
@@ -12,6 +13,8 @@ namespace API_RentMoto.Services
 {
     public class RabbitMQ : IRabbitMQ
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
 
         #region Propriedades
         //Host
@@ -355,6 +358,7 @@ namespace API_RentMoto.Services
 
         public bool Queue_Moto_Add(string texto, string nomeFila)
         {
+            Logger.Info($"Queue_Moto_Add->{texto}");
 
             var rQueue = new RabbitMQ();
             rQueue.TopicName = "RentMoto";
@@ -369,8 +373,12 @@ namespace API_RentMoto.Services
             }
             catch (Exception ex)
             {
+                Logger.Info($"Queue_Moto_Add->ERRO: {ex.Message}");
+
                 throw ex;
             }
+
+            Logger.Info($"Queue_Moto_Add->Finalizando.");
 
             return true;
         }
