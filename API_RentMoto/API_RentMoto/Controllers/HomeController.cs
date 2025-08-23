@@ -15,85 +15,30 @@ namespace API_RentMoto.Controllers
     public class HomeController : ApiController
     {
 
-        void Envia_Pacote_Fila_Teste(string texto)
-        {
-
-            var rQueue = new API_RentMoto.Services.RabbitMQ();
-            var nomeFila = "Motos_Adicionadas";
-            rQueue.TopicName = "ANTT";
-            rQueue.CreateConnection();
-            rQueue.CreateInfrastructure(nomeFila);
-            try
-            {
-                while (true)
-                {
-                        var pacote = JsonConvert.SerializeObject(texto, Newtonsoft.Json.Formatting.None);
-                        rQueue.Publish(pacote, nomeFila);
-                        rQueue.closeConnection();
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        
-        [HttpPost]
-        public IHttpActionResult TesteAdd(string texto = "")
-        {
-            try
-            {
-                Envia_Pacote_Fila_Teste(texto);
-                return Ok("Enviado para a fila...");
-            }
-            catch(Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        
-        }
-
         [HttpGet]
         public IHttpActionResult TesteRead()
         {
+            Moto log = new Moto();
             try
             {
+                var rQueue = new API_RentMoto.Services.RabbitMQ();
+                var nomeFila = "Motos_Adicionadas";
+                rQueue.TopicName = "RentMoto";
+                rQueue.CreateConnection();
+                rQueue.CreateInfrastructure(nomeFila);
+                string receivedMessage = "";
 
-                //var rQueue = new API_RentMoto.Services.RabbitMQ();
-                //var nomeFila = "Queue";
-                //rQueue.TopicName = "ANTT";
-                //rQueue.CreateConnection();
-                //rQueue.CreateInfrastructure(nomeFila);
-                //string receivedMessage = "";
+                receivedMessage = rQueue.Receive(nomeFila);
+                if (receivedMessage != null)
+                {
+                    var Pacote = new Moto();
+                    //Pacote.PartitionKey = log.PartitionKey;
+                    log = JsonConvert.DeserializeObject<Moto>(receivedMessage);
+                }
+                else
+                    rQueue.closeConnection();
 
-                //while (true)
-                //{
-                //    try
-                //    {
-                //        receivedMessage = rQueue.Receive(nomeFila);
-                //        if (receivedMessage != null)
-                //        {
-                //            var Pacote = new ViagemModel();
-                //            var log = JsonConvert.DeserializeObject<ViagemModel_Rabbit_v3>(receivedMessage);
-                //            Pacote.PartitionKey = log.PartitionKey;
-                //            int result = DateTime.Compare(log.dataHoraEvento, DateTime.Now);
-                //            break;
-                //        }
-                //        else
-                //        {
-                //            rQueue.closeConnection();
-                //            break;
-                //        }
-                //    }
-                //    catch (MessagingException e)
-                //    { }
-                //}
-
-
-                return Ok();
+                return Ok(log);
             }
             catch (Exception e)
             {
@@ -101,40 +46,6 @@ namespace API_RentMoto.Controllers
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //[HttpGet]
-        //public string TesteList()
-        //{
-        //    using (var context = new AppDbContext())
-        //    {
-        //        return JsonConvert.SerializeObject(context.Teste.ToList());
-        //    }
-        //}
-
-
- 
     }
 
 

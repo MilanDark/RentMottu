@@ -222,3 +222,5 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_Ren
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\System.Threading.Channels.xml
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criar_Tabela_RabbitMQ_e_Update_Outras.resources
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Atualizacao_Tabela_Entregadores.resources
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criacao_Tabela_Notificao_Cadastro_Moto.resources
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criacao_Tabela_Notificao_Cadastro_Moto_2.resources

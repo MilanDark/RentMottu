@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using API_RentMoto.Models;
 using API_RentMoto.Repositories.Interfaces;
-using API_RentMoto.Services;
 using Newtonsoft.Json;
 
 namespace API_RentMoto.Services
@@ -59,10 +56,10 @@ namespace API_RentMoto.Services
             return _locacaoRepository.Verify_Rent_By_Moto(identificadorMoto);
         }
 
-        void Envia_Pacote_Fila_Teste(Moto moto)
+        void Queue_Moto_Add(Moto moto)
         {
             var Queue = new RabbitMQ();
-            Queue.Envia_Pacote_Fila_Teste(JsonConvert.SerializeObject(moto), QueueName);
+            Queue.Queue_Moto_Add(JsonConvert.SerializeObject(moto), QueueName);
         }
         #endregion
 
@@ -144,7 +141,7 @@ namespace API_RentMoto.Services
 
             Ajust_Fields_To_DB(ref moto);
 
-            Envia_Pacote_Fila_Teste(moto);
+            Queue_Moto_Add(moto);
             return _repository.Add(moto);
         }
         #endregion

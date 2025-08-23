@@ -1,4 +1,6 @@
 ﻿
+using API_RentMoto.Models;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
@@ -8,7 +10,7 @@ using System.Threading;
 
 namespace API_RentMoto.Services
 {
-    public class RabbitMQ 
+    public class RabbitMQ : IRabbitMQ
     {
 
         #region Propriedades
@@ -321,8 +323,37 @@ namespace API_RentMoto.Services
 
         #region Controles
 
+        public Moto Queue_Moto_Read()
+        {
+            Moto log = new Moto();
+            try
+            {
+                var rQueue = new API_RentMoto.Services.RabbitMQ();
+                var nomeFila = "Motos_Adicionadas";
+                rQueue.TopicName = "RentMoto";
+                rQueue.CreateConnection();
+                rQueue.CreateInfrastructure(nomeFila);
+                string receivedMessage = "";
 
-        public bool Envia_Pacote_Fila_Teste(string texto, string nomeFila)
+                receivedMessage = rQueue.Receive(nomeFila);
+
+                Thread.Sleep(500);
+                if (receivedMessage != null)
+                    log = JsonConvert.DeserializeObject<Moto>(receivedMessage);
+
+
+                rQueue.closeConnection();
+                return log;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+    
+
+
+        public bool Queue_Moto_Add(string texto, string nomeFila)
         {
 
             var rQueue = new RabbitMQ();

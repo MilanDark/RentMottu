@@ -15,9 +15,11 @@ namespace API_RentMoto.Models
         public DbSet<Moto> Moto { get; set; }
         public DbSet<Entregador> Entregador { get; set; }
         public DbSet<Locacao> Locacao { get; set; }
+        public DbSet<Notificacoes_Cadastro_Motos> Notificao_Cadastro_Moto { get; set; }
+        
 
 
-   
+
         // Opcional: Construtor para definir o nome da conexão
         public AppDbContext() : base("name=Conexao3")
         {

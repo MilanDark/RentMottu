@@ -174,3 +174,5 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\o
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.csproj.CopyComplete
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.pdb
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\RabbitMQ.Client.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\RabbitMQ.Client.xml

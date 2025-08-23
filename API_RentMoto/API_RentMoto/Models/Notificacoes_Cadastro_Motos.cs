@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API_RentMoto.Models
 {
-    [Table("queue_motorcyckes_2024")]
-    public class Queue_Motorcyckes_2024
+    [Table("notificacoes_cadastro_motos")]
+    public class Notificacoes_Cadastro_Motos
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -15,6 +15,8 @@ namespace API_RentMoto.Models
 
         public DateTime timestamp { get; set; } = DateTime.Now;
 
+        [MaxLength(200)]
+        public string Mensagem { get; set; }
     }
 
 }
