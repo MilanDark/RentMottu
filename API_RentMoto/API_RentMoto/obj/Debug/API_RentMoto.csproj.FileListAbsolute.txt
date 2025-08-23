@@ -216,3 +216,9 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_Ren
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.pdb
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.csprojAssemblyReference.cache
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\RabbitMQ.Client.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\System.Threading.Channels.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\RabbitMQ.Client.xml
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\System.Threading.Channels.xml
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criar_Tabela_RabbitMQ_e_Update_Outras.resources
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Atualizacao_Tabela_Entregadores.resources

@@ -17,6 +17,12 @@ namespace API_RentMoto.Repositories
 
         public Entregador GetById(int id) => _context.Entregador.Find(id);
 
+        public Entregador GetByIdentificador(string identificador) => _context.Entregador.Where(x => x.identificador == identificador).FirstOrDefault();
+
+        public bool VerifyCNPJ(string CNPJ) => _context.Entregador.Where(x => x.cnpj == CNPJ).Count() > 0;
+
+        public bool Verify_CNH(string CNH) => _context.Entregador.Where(x => x.numero_cnh == CNH).Count() > 0;
+
         public Entregador Add(Entregador entregador)
         {
             _context.Entregador.Add(entregador);

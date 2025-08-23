@@ -11,11 +11,14 @@ namespace API_RentMoto.Services
     public class MotoService : IMotoService
     {
         private readonly IMotoRepository _repository;
+        private readonly ILocacaoRepository _locacaoRepository;
 
-        public MotoService(IMotoRepository motoRepository)
+        public MotoService(IMotoRepository motoRepository, ILocacaoRepository LocacaoRepository)
         {
             _repository = motoRepository;
+            _locacaoRepository = LocacaoRepository;
         }
+
 
 
         #region Functions
@@ -28,9 +31,41 @@ namespace API_RentMoto.Services
             new_moto.placa = moto.placa;
         }
 
+        bool Verify_Motorcycles_Some_Placa(int id, string placa)
+        {
+            return (_repository.GetMotoByPlacaAndId(id, placa) != null);
+        }
+
+        bool Verify_Motorcycles_By_Placa(string placa)
+        {
+            return (_repository.GetMotoByPlaca(placa.ToUpper().Trim())!=null);
+        }
+
+        protected void Ajust_Fields_To_DB(ref Moto moto)
+        {
+            moto.placa = moto.placa.Trim().ToUpper();
+        }
+
+        bool Verify_Motorcycles_By_Placa(int id)
+        {
+            return (_repository.GetById(id)!=null);
+        }
+
+        bool Verify_Rent_By_Moto(string identificadorMoto)
+        {
+            return _locacaoRepository.Verify_Rent_By_Moto(identificadorMoto);
+        }
         #endregion
 
+
+
+
         #region Methods
+
+        public Moto GetMotoById(int id)
+        {
+            return _repository.GetById(id);
+        }
 
         public IEnumerable<Moto> GetAll()
         {
@@ -39,16 +74,35 @@ namespace API_RentMoto.Services
 
         public Moto GetMotoByPlaca(string placa)
         {
-            return _repository.GetMotoByPlaca(placa);
+
+            if (string.IsNullOrEmpty(placa))
+                throw new InvalidOperationException("Parâmetro Placa não enviado");
+
+            var ret = _repository.GetMotoByPlaca(placa.ToUpper().Trim());
+
+            if (ret == null)
+                throw new InvalidOperationException("Não existem motos cadastradas com esta placa");
+
+            return ret;
         }
 
-        public Moto GetMotoById(int id)
+        public Moto GetMotoByIdentificador(string identificador)
         {
-            return _repository.GetById(id);
+            return _repository.GetByIdentificador(identificador);
         }
 
-        public void UpdatePlacaMoto(Moto moto, string placa)
+        public void UpdatePlacaMoto(int id, string placa)
         {
+            if (id <= 0)
+                throw new ArgumentException("Dados inválidos");
+
+            var moto = GetMotoById(id);
+            if (moto == null)
+                throw new InvalidOperationException("Moto não encontrada");
+
+            if (Verify_Motorcycles_Some_Placa(id,placa))
+                throw new InvalidOperationException("Já existe uma Moto diferente cadastrada com a placa que você tenta alterar");
+
             moto.placa = placa;
             _repository.Update(moto);
         }
@@ -59,19 +113,34 @@ namespace API_RentMoto.Services
             _repository.Update(moto);
         }
 
+
+
+
         public void DeleteMoto(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException("Dados inválidos");
+
+            var moto = GetMotoById(id);
+            if (moto==null)
+                throw new InvalidOperationException("Moto não encontrada");
+
+            if(Verify_Rent_By_Moto(moto.identificador))
+                throw new InvalidOperationException("A moto não pode ser removida por estar com locação ativa");
+
             _repository.Delete(id);
         }
 
+
+
         public Moto CreateMoto(Moto moto)
         {
-            return _repository.Add(moto);
-        }
+            if (Verify_Motorcycles_By_Placa(moto.placa))
+                throw new InvalidOperationException("Já existe uma moto cadastrada com esta placa");
 
-        public Moto CreateMotoExternal(Moto moto)
-        {
-            throw new NotImplementedException();
+            Ajust_Fields_To_DB(ref moto);
+            moto.placa = moto.placa.Trim().ToUpper();
+            return _repository.Add(moto);
         }
         #endregion
     }

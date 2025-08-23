@@ -6,12 +6,12 @@ namespace API_RentMoto.Services
     public interface IMotoService
     {
         Moto CreateMoto(Moto moto);
-        Moto CreateMotoExternal(Moto moto); // chama API externa
         IEnumerable<Moto> GetAll();
         Moto GetMotoById(int id);
         Moto GetMotoByPlaca(string placa);
         void UpdateMoto(Moto moto, Moto new_moto);
-        void UpdatePlacaMoto(Moto moto, string placa);
+        void UpdatePlacaMoto(int id, string placa);
         void DeleteMoto(int id);
+        Moto GetMotoByIdentificador(string identificador);
     }
 }

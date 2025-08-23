@@ -16,7 +16,15 @@ namespace API_RentMoto.Controllers
 
         public locacaoController()
         {
-            _service = new LocacaoService(new locacaoRepository(new AppDbContext()));
+            var db = new AppDbContext();
+            var motoRepo = new MotoRepository(db);
+            var entregadorRepo = new entregadorRepository(db);
+            var LocacaoRepo = new locacaoRepository(db);
+
+            var motoService = new MotoService(motoRepo, LocacaoRepo);
+            var entregadorService = new EntregadorService(entregadorRepo);
+
+            _service = new LocacaoService(new locacaoRepository(new AppDbContext())    , motoService, entregadorService);
         }
 
         public locacaoController(ILocacaoService service)
@@ -38,6 +46,10 @@ namespace API_RentMoto.Controllers
             {
                 var ret = _service.Add(locacao);
                 return Ok();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Content(HttpStatusCode.NotFound, new { mensagem = ex.Message });
             }
             catch (Exception ex)
             {
@@ -90,6 +102,20 @@ namespace API_RentMoto.Controllers
             }
         }
 
+
+        [HttpGet]
+        [Route("")]
+        public IHttpActionResult GetContractValue(Locacao locacao)
+        {
+            try
+            {
+                return Ok(_service.CalculateValue(locacao));
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
         #endregion
     }

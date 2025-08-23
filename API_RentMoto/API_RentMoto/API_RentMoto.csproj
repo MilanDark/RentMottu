@@ -222,11 +222,20 @@
     <Compile Include="Migrations\202508222330348_Criacao_Banco_Completo2.designer.cs">
       <DependentUpon>202508222330348_Criacao_Banco_Completo2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202508231559129_Criar_Tabela_RabbitMQ_e_Update_Outras.cs" />
+    <Compile Include="Migrations\202508231559129_Criar_Tabela_RabbitMQ_e_Update_Outras.designer.cs">
+      <DependentUpon>202508231559129_Criar_Tabela_RabbitMQ_e_Update_Outras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202508231614441_Atualizacao_Tabela_Entregadores.cs" />
+    <Compile Include="Migrations\202508231614441_Atualizacao_Tabela_Entregadores.designer.cs">
+      <DependentUpon>202508231614441_Atualizacao_Tabela_Entregadores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\Entregadores.cs" />
     <Compile Include="Models\Locacoes.cs" />
     <Compile Include="Models\Motos.cs" />
+    <Compile Include="Models\Queue_Motorcyckes_2024.cs" />
     <Compile Include="Models\Teste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntregadorRepository.cs" />
@@ -342,6 +351,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202508222330348_Criacao_Banco_Completo2.resx">
       <DependentUpon>202508222330348_Criacao_Banco_Completo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508231559129_Criar_Tabela_RabbitMQ_e_Update_Outras.resx">
+      <DependentUpon>202508231559129_Criar_Tabela_RabbitMQ_e_Update_Outras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202508231614441_Atualizacao_Tabela_Entregadores.resx">
+      <DependentUpon>202508231614441_Atualizacao_Tabela_Entregadores.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

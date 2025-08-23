@@ -18,6 +18,8 @@ namespace API_RentMoto.Repositories
 
         public Locacao GetById(int id) => _context.Locacao.Find(id);
 
+        public bool Verify_Rent_By_Moto(string identificadorMoto) => _context.Locacao.Where(x=> x.moto_id == identificadorMoto && x.data_devolucao == null).Count()>0;
+
         public Locacao Add(Locacao locacao)
         {
             _context.Locacao.Add(locacao);
@@ -40,6 +42,8 @@ namespace API_RentMoto.Repositories
                 _context.SaveChanges();
             }
         }
+
+
 
     }
 }

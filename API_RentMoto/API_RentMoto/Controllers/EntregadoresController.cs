@@ -1,10 +1,11 @@
 ﻿using API_RentMoto.Models;
 using API_RentMoto.Repositories;
 using API_RentMoto.Services;
-using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Http;
 
 
@@ -37,33 +38,16 @@ namespace API_RentMoto.Controllers
                 var ret = _service.Add(entregador);
                 return Ok();
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
-                return InternalServerError(ex);
-            }
-        }
-
-        [HttpPost]
-        [Route("{id:int}")]//ok
-        public IHttpActionResult Upload_CNH(int id, [FromBody] Entregador entregador)
-        {
-            if (string.IsNullOrEmpty(entregador.imagem_cnh) || (entregador.imagem_cnh.Length % 4 != 0))
-                return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
-
-            try
-            {
-                var existingEntregador = _service.GetById(id);
-                if (existingEntregador == null)
-                    return Content(HttpStatusCode.NotFound, new { mensagem = "Entregador não encontrado" });
-
-                _service.Update(existingEntregador, entregador.imagem_cnh);
-                return Ok();
+                return Content(HttpStatusCode.BadRequest, new { mensagem = ex.Message });
             }
             catch (Exception ex)
             {
                 return InternalServerError(ex);
             }
         }
+
 
 
         [HttpGet]
@@ -129,6 +113,30 @@ namespace API_RentMoto.Controllers
             {
                 return InternalServerError(ex);
             }
+        }
+
+
+        [HttpPost]
+        [Route("{id:int}")]
+        public IHttpActionResult UploadCNH([FromUri(Name = "id")] int entregadorId)
+        {
+            try
+            {
+                var httpRequest = HttpContext.Current.Request;
+                HttpPostedFile file = httpRequest.Files[0];
+
+                _service.Update(entregadorId, file);
+                return Ok();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return Content(HttpStatusCode.BadRequest, new { mensagem = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
         }
     }
 }

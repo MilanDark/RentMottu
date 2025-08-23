@@ -12,6 +12,7 @@ namespace API_RentMoto.Repositories.Interfaces
         Locacao GetById(int id);
         void Update(Locacao entregador);
         void Delete(int id);
+        bool Verify_Rent_By_Moto(string identificadorMoto);
     }
 }
 
