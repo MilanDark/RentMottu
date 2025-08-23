@@ -21,7 +21,8 @@ namespace API_RentMoto.Models
         [Required]
         public int ano { get; set; }
 
-        [MaxLength(50)]
+        [Index("IX_placa", IsUnique = true)] // define índice único
+        [MaxLength(8)]
         public string placa { get; set; }
     }
 

@@ -15,16 +15,10 @@ namespace API_RentMoto.Models
 
 
         [Required]
-        public int entregador_id { get; set; }
-        [ForeignKey("entregador_id")]
-        public virtual Entregador entregador { get; set; }
-
+        public string entregador_id { get; set; }
 
         [Required]
-        public int moto_id { get; set; }
-        [ForeignKey("moto_id")]
-        public virtual Moto moto { get; set; }
-
+        public string moto_id { get; set; }
 
         [Required]
         public DateTime data_inicio { get; set; }

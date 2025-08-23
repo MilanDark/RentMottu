@@ -5,18 +5,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using RabbitMQ.Client;
+using System.Text;
+
 
 
 namespace API_RentMoto.Controllers
 {
     public class HomeController : ApiController
     {
+
+        void Envia_Pacote_Fila_Teste()
+        {
+
+
+
+        }
+
         
         [HttpPost]
         public IHttpActionResult TesteAdd(string Test_Text = "")
         {
             try
             {
+
+                Envia_Pacote_Fila_Teste();
+
+
+
+
                 using (var context = new AppDbContext())
                 {
                     context.Teste.Add(new Teste { Retorno = Test_Text });

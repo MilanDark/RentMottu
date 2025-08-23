@@ -16,8 +16,10 @@ namespace API_RentMoto.Models
         public DbSet<Entregador> Entregador { get; set; }
         public DbSet<Locacao> Locacao { get; set; }
 
+
+   
         // Opcional: Construtor para definir o nome da conexão
-        public AppDbContext() : base("Conexao1") // ou o nome da sua string de conexão
+        public AppDbContext() : base("name=Conexao3")
         {
             //Database.SetInitializer( CreateDatabaseIfNotExists<AppDbContext>());
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<AppDbContext>());

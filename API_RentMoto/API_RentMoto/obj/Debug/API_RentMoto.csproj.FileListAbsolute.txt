@@ -1,4 +1,3 @@
-C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.csproj.CoreCompileInputs.cache
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\API_RentMoto.dll.config
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\API_RentMoto.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\API_RentMoto.pdb
@@ -208,10 +207,12 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_Ren
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\pt-br\System.Web.WebPages.resources.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\bin\pt-br\System.Web.WebPages.Razor.resources.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criacao_Banco_Completo.resources
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criacao_Banco_Completo1.resources
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criacao_Banco_Completo2.resources
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.csproj.GenerateResource.cache
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.csproj.CoreCompileInputs.cache
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.csproj.CopyComplete
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.pdb
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.csprojAssemblyReference.cache
-C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criacao_Banco_Completo.resources
-C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.csproj.GenerateResource.cache
-C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto\API_RentMoto\obj\Debug\API_RentMoto.Migrations.Criacao_Banco_Completo1.resources
