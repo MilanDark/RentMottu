@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Threading;
 using API_RentMoto.Models;
 using Newtonsoft.Json;
+using NLog;
+
 
 namespace MotoQueueConsumer
 {
     class Program
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         #region Functions
         private static void Publish_Log(Moto log)
@@ -25,7 +29,11 @@ namespace MotoQueueConsumer
         #region Methods
         static void Main(string[] args)
         {
-            Console.WriteLine("Buscando 1 registro da fila...");
+            Logger.Info("Console consumer iniciado...");
+            Thread.Sleep(2000);
+
+            Logger.Info("Buscando 1 registro da fila...");
+            Thread.Sleep(5000);
 
             Moto log = new Moto();
             try
@@ -42,22 +50,31 @@ namespace MotoQueueConsumer
                     log = JsonConvert.DeserializeObject<Moto>(receivedMessage);
                     if (log.ano == 2024)
                     {
-                        Console.WriteLine("A moto " + log.modelo + " de ano 2024 foi cadastrada no sistema.");
+                        Logger.Info("A moto " + log.modelo + " de ano 2024 foi cadastrada no sistema.");
                         Publish_Log(log);
                         Console.ReadKey();
                     }
                 }
                 rQueue.closeConnection();
 
-                Console.WriteLine("Aguardando mensagens. Pressione [enter] para sair.");
+                Logger.Info("Aguardando mensagens. Pressione [enter] para sair.");
                 Console.ReadKey();
+
             }
             catch (Exception e)
             {
-                Console.WriteLine("ERRO: " + e.Message);
+                Logger.Info("ERRO:" + e.Message);
                 Console.ReadLine();
             }
         }
         #endregion
     }
 }
+
+
+
+
+
+
+
+

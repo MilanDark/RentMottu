@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using API_RentMoto.Models;
 using API_RentMoto.Repositories.Interfaces;
 using Newtonsoft.Json;
+using NLog;
 
 namespace API_RentMoto.Services
 {
@@ -10,6 +11,7 @@ namespace API_RentMoto.Services
     {
         private readonly IMotoRepository _repository;
         private readonly ILocacaoRepository _locacaoRepository;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         const string QueueName = "Motos_Adicionadas";
 
@@ -143,6 +145,10 @@ namespace API_RentMoto.Services
 
         public Moto CreateMoto(Moto moto)
         {
+            Logger.Info($"Criando moto {moto.identificador}");
+            // lógica de criação
+            Logger.Info($"Moto {moto.identificador} criada com sucesso");
+
             if (Verify_Motorcycles_By_Placa(moto.placa))
                 throw new InvalidOperationException("Já existe uma moto cadastrada com esta placa");
 
