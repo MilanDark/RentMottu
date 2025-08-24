@@ -64,7 +64,7 @@ namespace API_RentMoto.Services
             if (id <= 0)
                 throw new InvalidOperationException("Request mal formada");
 
-            var moto = GetById(id);
+            var moto = _repository.GetById(id);
             if (moto == null)
                 throw new InvalidOperationException("Moto não encontrada");
 

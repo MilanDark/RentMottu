@@ -136,6 +136,7 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\b
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\NLog.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\RabbitMQ.Client.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\API_RentMoto.pdb
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\API_RentMoto.xml
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\API_RentMoto.dll.config
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\EntityFramework.xml
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\EntityFramework.SqlServer.xml

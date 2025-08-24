@@ -65,7 +65,7 @@ namespace API_RentMoto.Controllers
         {
             try
             {
-                return Ok(GetById(id));
+                return Ok(_service.GetById(id));
             }
             catch (InvalidOperationException ex)
             {

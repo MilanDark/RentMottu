@@ -20,7 +20,7 @@ namespace API_RentMoto.Repositories
 
         public Moto GetByIdentificador(string identificador) => _context.Moto.Where(x=> x.identificador==identificador).FirstOrDefault();
 
-        public Moto GetMotoByPlaca(string placa) => _context.Moto.Where(x=> x.placa== placa).FirstOrDefault();
+        public IEnumerable<Moto> GetMotoByPlaca(string placa) => _context.Moto.Where(x=> x.placa== placa).ToList();
 
         public Moto GetMotoByPlacaAndId(int id, string placa) => _context.Moto.Where(x => x.placa == placa && x.id!=id).FirstOrDefault();
 

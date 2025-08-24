@@ -100,12 +100,12 @@ namespace API_RentMoto.Services
 
         public Locacao GetById(int id)
         {
-            Logger.Info(string.Format("GetByIdLocacao->{0}", id));
+            Logger.Info(string.Format("GetByIdLocacao->{0}", id.ToString()));
 
             if (id <= 0)
                 throw new InvalidOperationException("Dados inválidos");
 
-            var ret = GetById(id);
+            var ret = _repository.GetById(id);
             if (ret == null)
                 throw new InvalidOperationException("Locação não encontrada");
 

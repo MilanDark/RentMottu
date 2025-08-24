@@ -59,16 +59,16 @@ namespace API_RentMoto.Controllers
             }
         }
 
-        /// <summary>Busca uma Moto pela Placa</summary>
+        /// <summary>Busca uma Moto pela Placa, ou traz todas quando a placa não é informada</summary>
         /// <param>string Placa</param>
         /// <returns>Entidade Moto</returns>
         [HttpGet]
-        [Route("{id:int}/placa")]
-        public IHttpActionResult GetMotoByPlaca(string placa = null)
+        [Route("")]
+        public IHttpActionResult GetMoto(string placa)
         {
             try
             {
-                return Ok(_service.GetMotoByPlaca(placa));
+                return Ok(_service.GetMoto(placa));
             }
             catch (InvalidOperationException ex)
             {
@@ -80,32 +80,12 @@ namespace API_RentMoto.Controllers
             }
         }
 
-        /// <summary>Retorna uma Lista com Todas as Motos do Sistema</summary>
-        /// <param></param>
-        /// <returns>Lista de Entidade MOTO</returns>
-        [HttpGet]
-        [Route("")]
-        public IHttpActionResult GetAllMoto()
-        {
-            try
-            {
-                return Ok(_service.GetAll());
-            }
-            catch (InvalidOperationException ex)
-            {
-                return Content(HttpStatusCode.NotFound, new { mensagem = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
 
         /// <summary>Atualizar a placa de uma moto já cadastrada no sistema</summary>
         /// <param>Inteiro ID Identidade da moto no Banco de dados, Entidade MOTO com a placa que deseja persistir</param>
         /// <returns>Placa modificada com sucesso</returns>
         [HttpPut]
-        [Route("{id:int}")]
+        [Route("{id:int}/placa")]
         public IHttpActionResult UpdatePlacaMoto(int id, [FromBody] Moto moto)
         {
             try

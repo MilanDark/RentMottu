@@ -94,19 +94,29 @@ namespace API_RentMoto.Services
             return _repository.GetAll();
         }
 
-        public Moto GetMotoByPlaca(string placa)
+
+
+
+        public IEnumerable<Moto> GetMoto(string placa)
         {
-            Logger.Info(string.Format("GetMotoByPlaca->{0}", placa));
+            Logger.Info(string.Format("GetMoto->{0}", placa));
 
             if (string.IsNullOrEmpty(placa))
                 throw new InvalidOperationException("Parâmetro Placa não enviado");
 
-            var ret = _repository.GetMotoByPlaca(placa.ToUpper().Trim());
+
+            //var ret = _repository.GetMotoByPlaca(placa.ToUpper().Trim());
+
+            IEnumerable<Moto> ret = new List<Moto>();
+            if (string.IsNullOrEmpty(placa))
+                ret = GetAll();
+            else
+                ret = _repository.GetMotoByPlaca(placa);
 
             if (ret == null)
                 throw new InvalidOperationException("Não existem motos cadastradas com esta placa");
 
-            Logger.Info($"GetMotoByPlaca->Finalizando.");
+            Logger.Info($"GetMoto->Finalizando.");
             return ret;
         }
 
