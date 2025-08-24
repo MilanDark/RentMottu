@@ -1,24 +1,35 @@
 ﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>API RentMoto</h1>
+    <p class="lead">Aqui você encontrará informações sobre a API.</p>
+    <p><a href="/swagger" class="btn btn-primary btn-lg">Para abrir o Swagger da API Clique aqui &raquo;</a></p>
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+        <h2>Tecnologias</h2>
+        <p>EntityFramework - ORM</p>
+        <p>NLOG - logging</p>
+        <p>Docker - Container</p>
+        <p>.Net - Framework</p>
+        <p>RabbitMQ - Mensageria</p>
+        <p>PostgreSQL - Banco</p>
+        <p>Swashbuckle - Documentação</p>
+        
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+        <h2>Logs</h2>
+        <p>O sistema possui controle de Log, tanto de aplicação quanto console. Você pode encontrar os arquivos de LOG na pasta API_RentMoto/logs.</p>
+        <br /><br />
+        <h2>Consumer</h2>
+        <p>O Consumer é um Console que irá processar a mensageria. Vai puxar 1 mensagem da fila de motos por vez, e se a mensagem for equivalente a uma moto 2024, ele vai gerar um aviso
+        e vai gravar a notificação no banco de dados (Tabela Notificacoes).</p>
+
+
+
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+        <h2>Documentação</h2>
+        Você pode abrir a documentação da API no botão abaixo
+        <p><a class="btn btn-default" href="/swagger/docs/v1">Documentação da API &raquo;</a></p>
+        <br /><br />
     </div>
 </div>

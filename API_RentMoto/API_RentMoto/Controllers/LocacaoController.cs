@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace API_RentMoto.Controllers
 {
+    /// <summary>Controladora de Locação de Motos para Entregadores</summary>
     [RoutePrefix("api/locacao")]
     public class locacaoController : ApiController
     {
@@ -35,6 +36,9 @@ namespace API_RentMoto.Controllers
 
 
         #region Methods
+        /// <summary>Adicionar uma Locação com a Moto e o Entregador informados</summary>
+        /// <param>Entidade Locacao</param>
+        /// <returns>OK</returns>
         [HttpPost]
         [Route("")]
         public IHttpActionResult Add(Locacao locacao)
@@ -57,6 +61,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        /// <summary>Informar uma Data de Devolução</summary>
+        /// <param>ID Identidade da Entidade de Locação do Banco e Entidade Locação com Data de Delução desejada</param>
+        /// <returns>Data de devolução informada com sucesso</returns>
         [HttpPut]
         [Route("{id:int}")]
         public IHttpActionResult Devolucao(int id, [FromBody] Locacao locacao)
@@ -77,6 +84,9 @@ namespace API_RentMoto.Controllers
         }
 
 
+        /// <summary>Buscar Locacao por ID</summary>
+        /// <param>ID Identidade da Entidade Locacao no Banco</param>
+        /// <returns>Entidade Locacao</returns>
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetById(int id)
@@ -92,6 +102,9 @@ namespace API_RentMoto.Controllers
         }
 
 
+        /// <summary>Calcula o valor da Locação com dados inputados. Ele não busca ou persiste dados, ele realiza o cálculo de acordo com o json Locacao enviado</summary>
+        /// <param>Entidade Locacao</param>
+        /// <returns>Valor do contrato em DECIMAL</returns>
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetContractValue(Locacao locacao)

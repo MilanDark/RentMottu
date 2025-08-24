@@ -2,8 +2,6 @@
 using API_RentMoto.Repositories;
 using API_RentMoto.Services;
 using System;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
@@ -11,6 +9,7 @@ using System.Web.Http;
 
 namespace API_RentMoto.Controllers
 {
+    /// <summary>Controladora de Entregadores</summary>
     [RoutePrefix("api/entregadores")]
     public class entregadoresController : ApiController
     {
@@ -30,6 +29,11 @@ namespace API_RentMoto.Controllers
 
 
         #region Methods
+
+
+        /// <summary>Adicionar Entregador no sistema</summary>
+        /// <param>Entidade Entregador</param>
+        /// <returns>OK</returns>
         [HttpPost]
         [Route("")]
         public IHttpActionResult Add(Entregador entregador)
@@ -52,8 +56,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
-
-
+        /// <summary>Busca Entregador pelo ID de cadastro</summary>
+        /// <param>ID indetidade do Banco</param>
+        /// <returns>Entidade Entregador</returns>
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetById(int id)
@@ -72,7 +77,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
-
+        /// <summary>Remover um entregador</summary>
+        /// <param>ID Identidade do Banco</param>
+        /// <returns>OK</returns>
         [HttpDelete]
         [Route("{id:int}")]
         public IHttpActionResult Delete(int id)
@@ -92,7 +99,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
-
+        /// <summary>Enviar arquivo de imagem da CNH - Somente PNG e BMP</summary>
+        /// <param>ID Identidade do Entregador no Banco e Arquivo Indexado no Formato FILE</param>
+        /// <returns>OK</returns>
         [HttpPost]
         [Route("{id:int}")]
         public IHttpActionResult UploadCNH([FromUri(Name = "id")] int entregadorId)

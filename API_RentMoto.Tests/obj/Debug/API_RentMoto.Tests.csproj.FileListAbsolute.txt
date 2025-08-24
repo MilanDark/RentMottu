@@ -1,3 +1,4 @@
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\NLog.config
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -129,7 +130,11 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\b
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\System.Web.WebPages.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\WebActivatorEx.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\Swashbuckle.Core.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\System.Web.Optimization.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\NLog.dll
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\RabbitMQ.Client.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\API_RentMoto.pdb
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\API_RentMoto.dll.config
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\EntityFramework.xml
@@ -159,6 +164,8 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\b
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\System.Web.Optimization.xml
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\NLog.xml
+C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\RabbitMQ.Client.xml
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\pt-br\System.Net.Http.Formatting.resources.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\pt-br\System.Web.Helpers.resources.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\pt-br\System.Web.Http.resources.dll
@@ -174,5 +181,3 @@ C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\o
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.csproj.CopyComplete
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.dll
 C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\obj\Debug\API_RentMoto.Tests.pdb
-C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\RabbitMQ.Client.dll
-C:\Users\Milan\Desktop\Trabalho\Entity c Postgre - RentMoto\API_RentMoto.Tests\bin\Debug\RabbitMQ.Client.xml

@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace API_RentMoto.Controllers
 {
+    /// <summary>Controladora de MOTOS</summary>
     [RoutePrefix("api/motos")]
     public class motosController : ApiController
     {
@@ -32,9 +33,13 @@ namespace API_RentMoto.Controllers
 
 
         #region Methods
+
+        /// <summary>Insere uma Moto no sistema</summary>
+        /// <param>Entidade MOTO</param>
+        /// <returns>OK</returns>
         [HttpPost]
         [Route("")]
-        public IHttpActionResult Create(Moto moto)
+        public IHttpActionResult CreateMoto(Moto moto)
         {
             if (!ModelState.IsValid)
                 return Content(HttpStatusCode.BadRequest, new { mensagem = "Dados inválidos" });
@@ -54,6 +59,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        /// <summary>Busca uma Moto pela Placa</summary>
+        /// <param>string Placa</param>
+        /// <returns>Entidade Moto</returns>
         [HttpGet]
         [Route("{id:int}/placa")]
         public IHttpActionResult GetMotoByPlaca(string placa = null)
@@ -72,6 +80,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        /// <summary>Retorna uma Lista com Todas as Motos do Sistema</summary>
+        /// <param></param>
+        /// <returns>Lista de Entidade MOTO</returns>
         [HttpGet]
         [Route("")]
         public IHttpActionResult GetAllMoto()
@@ -90,6 +101,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        /// <summary>Atualizar a placa de uma moto já cadastrada no sistema</summary>
+        /// <param>Inteiro ID Identidade da moto no Banco de dados, Entidade MOTO com a placa que deseja persistir</param>
+        /// <returns>Placa modificada com sucesso</returns>
         [HttpPut]
         [Route("{id:int}")]
         public IHttpActionResult UpdatePlacaMoto(int id, [FromBody] Moto moto)
@@ -109,6 +123,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        /// <summary>Busca uma Moto no sistema pelo ID Identidade</summary>
+        /// <param>Inteiro ID Identidade da Moto no Branco de dados</param>
+        /// <returns>Entidade MOTO encontrada</returns>
         [HttpGet]
         [Route("{id:int}")]
         public IHttpActionResult GetMotoById(int id)
@@ -127,6 +144,9 @@ namespace API_RentMoto.Controllers
             }
         }
 
+        /// <summary>Apagar uma Moto já gravada no sistema</summary>
+        /// <param>INTEIRO - ID Identidade da Moto no Banco de dados</param>
+        /// <returns>OK</returns>
         [HttpDelete]
         [Route("{id:int}")] 
         public IHttpActionResult DeleteMoto(int id)

@@ -18,7 +18,6 @@ namespace API_RentMoto
         protected void Application_Start()
         {
             Logger.Info("API iniciada...");
-            GlobalConfiguration.Configure(WebApiConfig.Register);
 
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

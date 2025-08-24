@@ -68,7 +68,7 @@ namespace API_RentMoto.Services
             if (locacao.plano == 45) valor_plano = 20;
             if (locacao.plano == 50) valor_plano = 18;
 
-            TimeSpan difF_days = locacao.data_previsao_termino- locacao.data_termino;
+            TimeSpan difF_days = locacao.data_previsao_termino - locacao.data_termino;
             if (difF_days.Days > 0)
             {
                 if (locacao.plano == 7)
@@ -80,7 +80,7 @@ namespace API_RentMoto.Services
             {
                 valor_multa = Math.Abs((difF_days.Days) * 50);
             }
-            return (valor_plano* locacao.plano )+ valor_multa;
+            return (valor_plano * locacao.plano) + valor_multa;
         }
         #endregion
 
@@ -100,7 +100,7 @@ namespace API_RentMoto.Services
 
         public Locacao GetById(int id)
         {
-            Logger.Info($"GetByIdLocacao->{id}");
+            Logger.Info(string.Format("GetByIdLocacao->{0}", id));
 
             if (id <= 0)
                 throw new InvalidOperationException("Dados inválidos");
@@ -116,7 +116,7 @@ namespace API_RentMoto.Services
 
         public void Update(int id, Locacao new_locacao)
         {
-            Logger.Info($"UpdateLocacao->{id}");
+            Logger.Info(string.Format("UpdateLocacao->{0}", id));
 
             if (id <= 0 || new_locacao.data_devolucao == null)
                 throw new InvalidOperationException("Dados inválidos");
@@ -133,7 +133,7 @@ namespace API_RentMoto.Services
 
         public void Delete(int id)
         {
-            Logger.Info($"Delete->{id}");
+            Logger.Info(string.Format("Delete->{0}", id));
 
             _repository.Delete(id);
 
@@ -142,12 +142,13 @@ namespace API_RentMoto.Services
 
         public double CalculateValue(Locacao locacao)
         {
+            Logger.Info(string.Format("Calcula Valor de Locação->Iniciado"));
             return (Calculate_Value(locacao));
         }
 
         public Locacao Add(Locacao locacao)
         {
-            Logger.Info($"AddLocacao->{locacao.moto_id}");
+            Logger.Info(string.Format("AddLocacao->{0}", locacao.moto_id));
 
             var msgError = Verify_Locacao_Rules(ref locacao);
             if (!string.IsNullOrEmpty(msgError))

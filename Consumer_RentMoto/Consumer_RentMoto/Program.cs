@@ -63,7 +63,7 @@ namespace MotoQueueConsumer
             }
             catch (Exception e)
             {
-                Logger.Info("ERRO:" + e.Message);
+                Logger.Error("ERRO:" + e.Message);
                 Console.ReadLine();
             }
         }

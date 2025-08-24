@@ -59,7 +59,7 @@ namespace API_RentMoto.Services
 
         public Entregador GetById(int id)
         {
-            Logger.Info($"GetByIdEntregador->{id}");
+            Logger.Info(string.Format("GetByIdEntregador->{0}", id));
 
             if (id <= 0)
                 throw new InvalidOperationException("Request mal formada");
@@ -75,14 +75,14 @@ namespace API_RentMoto.Services
 
         public Entregador GetByIdentificador(string identificador)
         {
-            Logger.Info($"GetByIdentificadorEntregador->{identificador}");
+            Logger.Info(string.Format("GetByIdentificadorEntregador->{0}", identificador));
 
             return _repository.GetByIdentificador(identificador);
         }
 
         public void Update(int entregadorId, HttpPostedFile file)
         {
-            Logger.Info($"UpdateEntregador->{entregadorId}");
+            Logger.Info(string.Format("UpdateEntregador->{0}", entregadorId));
 
             var entregador = GetById(entregadorId);
             if (entregador == null)
@@ -113,8 +113,7 @@ namespace API_RentMoto.Services
 
         public void Delete(int id)
         {
-
-            Logger.Info($"DeleteEntregador->{id}");
+            Logger.Info(string.Format("DeleteEntregador->{0}", id));
 
             if (id <= 0)
                 throw new InvalidOperationException("Dados inválidos");
@@ -130,7 +129,7 @@ namespace API_RentMoto.Services
 
         public Entregador Add(Entregador entregador)
         {
-            Logger.Info($"AddEntregador->{entregador.identificador}");
+            Logger.Info(string.Format("AddEntregador->{0}", entregador.identificador));
 
             if (Verify_CNPJ(entregador.cnpj))
                 throw new InvalidOperationException("CNPJ já cadastrado");

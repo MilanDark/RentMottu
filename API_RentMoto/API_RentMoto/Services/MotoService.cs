@@ -72,7 +72,7 @@ namespace API_RentMoto.Services
 
         public Moto GetMotoById(int id)
         {
-            Logger.Info($"GetMOtoById->{id}");
+            Logger.Info(string.Format("GetMOtoById->{0}", id));
 
             if (id <= 0)
                 throw new ArgumentException("Dados inválidos");
@@ -96,7 +96,7 @@ namespace API_RentMoto.Services
 
         public Moto GetMotoByPlaca(string placa)
         {
-            Logger.Info($"GetMotoByPlaca->{placa}");
+            Logger.Info(string.Format("GetMotoByPlaca->{0}", placa));
 
             if (string.IsNullOrEmpty(placa))
                 throw new InvalidOperationException("Parâmetro Placa não enviado");
@@ -112,14 +112,14 @@ namespace API_RentMoto.Services
 
         public Moto GetMotoByIdentificador(string identificador)
         {
-            Logger.Info($"GetMotoByIdentificador->{identificador}");
+            Logger.Info(string.Format("GetMotoByIdentificador->{0}", identificador));
 
             return _repository.GetByIdentificador(identificador);
         }
 
         public void UpdatePlacaMoto(int id, string placa)
         {
-            Logger.Info($"UpdatePlacaMOto->{id}---{placa}");
+            Logger.Info(string.Format("UpdatePlacaMOto->{0}-{1}", id, placa));
 
             if (id <= 0)
                 throw new ArgumentException("Dados inválidos");
@@ -139,7 +139,7 @@ namespace API_RentMoto.Services
 
         public void UpdateMoto(Moto moto, Moto new_moto)
         {
-            Logger.Info($"UpdateMoto->{moto.id}");
+            Logger.Info(string.Format("UpdateMoto->{0}", moto.id));
 
             Convert_to_Update_moto(new_moto, ref moto);
             _repository.Update(moto);
@@ -149,7 +149,7 @@ namespace API_RentMoto.Services
 
         public void DeleteMoto(int id)
         {
-            Logger.Info($"DeleteMoto->{id}");
+            Logger.Info(string.Format("DeleteMoto->{0}", id));
 
             if (id <= 0)
                 throw new ArgumentException("Dados inválidos");
@@ -169,7 +169,7 @@ namespace API_RentMoto.Services
 
         public Moto CreateMoto(Moto moto)
         {
-            Logger.Info($"CreateMoto->{moto.identificador}");
+            Logger.Info(string.Format("CreateMoto->{0}", moto.identificador));
 
             if (Verify_Motorcycles_By_Placa(moto.placa))
             {
